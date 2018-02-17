@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en" >
+
+<head>
+  <meta charset="UTF-8">
+  <title>Mohit Mittal</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link href="https://fonts.googleapis.com/css?family=Bitter:700|Exo:800|Inknut+Antiqua:700|Ubuntu:700" rel="stylesheet">
+<!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.css" />  -->
+
+  
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+
+  
+      <style>
+      /* NOTE: The styles were added inline because Prefixfree needs access to your styles and they must be inlined if they are on local disk! */
+      * {
+  box-sizing: border-box;
+}
+
+html, body {
+  min-height: 100%;
+  height: 100%;
+  background-image: url(http://theartmad.com/wp-content/uploads/Dark-Grey-Texture-Wallpaper-5.jpg);
+  background-size: cover;
+  background-position: top center;
+  /*font-family: helvetica neue, helvetica, arial, sans-serif;*/
+  /*font-weight: 200;*/
+}
+html.modal-active, body.modal-active {
+  overflow: hidden;
+}
+
+#modal-container {
+  position: fixed;
+  display: table;
+  height: 100%;   /* modal animation area*/
+  width: 100%;   /* modal animation area*/
+  top: 0;
+  left: 0;
+  transform: scale(0);
+  z-index: 1;
+}
+#modal-container.one {
+  transform: scaleY(0.01) scaleX(0);
+  animation: unfoldIn 1s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+}
+#modal-container.one .modal-background .modal {
+  transform: scale(0);
+  animation: zoomIn 0.5s 0.8s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+}
+#modal-container.one.out {
+  transform: scale(1);
+  animation: unfoldOut 1s 0.3s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+}
+#modal-container.one.out .modal-background .modal {
+  animation: zoomOut 0.5s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+}
+#modal-container .modal-background {
+  display: table-cell;
+  background: rgba(0, 0, 0, 0.8); /*rgba(0, 0, 0, 0.8); */  /* inactice screen color during activated modal */
+  text-align: center;
+  vertical-align: middle;
+}
+#modal-container .modal-background .modal {
+  /*background: white;*/
+  padding: 50px;
+  display: inline-block;
+  border-radius: 3px;
+  /*font-weight: 300;*/
+  position: relative;
+}
+#modal-container .modal-background .modal /*h2*/ {
+  /*font-size: 25px;
+  line-height: 25px;*/
+  margin-bottom: 15px;
+}
+#modal-container .modal-background .modal /*p*/ {
+  /*font-size: 18px;
+  line-height: 22px;*/
+}
+#modal-container .modal-background .modal .modal-svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  border-radius: 3px;
+}
+#modal-container .modal-background .modal .modal-svg rect {
+  stroke: #fff;
+  stroke-width: 2px;
+  stroke-dasharray: 778;
+  stroke-dashoffset: 778;
+}
+
+.content {
+  min-height: 100%;
+  height: 100%;
+/*  background: white; */  /*White color covering left half screen*/
+  position: relative;
+  z-index: 0;
+}
+.content /*h1*/ {
+  padding: 75px 0 30px 0;
+  text-align: center;
+  font-size: 30px;
+  line-height: 30px;
+}
+.content /*.buttons */{
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0;
+  text-align: center;
+}
+.content /*.buttons .button*/ {
+  display: inline-block;
+  text-align: center;
+  padding: 10px 15px;
+  margin: 10px;
+/*  background: red;*/   /*Red color covering left half screen*/
+  font-size: 18px;
+/*  background-color: #efefef; */  /*Grey color covering left half screen*/
+  border-radius: 3px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+}
+.content .buttons /*.button:hover */ {
+  color: white;
+  font-size: 50px; /* to add hover effect*/
+  /*background: #009bd5;*/    /*blue color at base window covering full screen*/
+}
+
+@keyframes unfoldIn {
+  0% {
+    transform: scaleY(0.005) scaleX(0);
+  }
+  50% {
+    transform: scaleY(0.005) scaleX(1);
+  }
+  100% {
+    transform: scaleY(1) scaleX(1);
+  }
+}
+@keyframes unfoldOut {
+  0% {
+    transform: scaleY(1) scaleX(1);
+  }
+  50% {
+    transform: scaleY(0.005) scaleX(1);
+  }
+  100% {
+    transform: scaleY(0.005) scaleX(0);
+  }
+}
+@keyframes zoomIn {
+  0% {
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+@keyframes zoomOut {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(0);
+  }
+}
+@keyframes fadeIn {
+  0% {
+    background: rgba(0, 0, 0, 0);
+  }
+  100% {
+    background: rgba(0, 0, 0, 0.7);
+  }
+}
+@keyframes fadeOut {
+  0% {
+    background: rgba(0, 0, 0, 0.7);
+  }
+  100% {
+    background: rgba(0, 0, 0, 0);
+  }
+}
+@keyframes scaleUp {
+  0% {
+    transform: scale(0.8) translateY(1000px);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1) translateY(0px);
+    opacity: 1;
+  }
+}
+@keyframes scaleDown {
+  0% {
+    transform: scale(1) translateY(0px);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(0.8) translateY(1000px);
+    opacity: 0;
+  }
+}
+@keyframes scaleBack {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(0.85);
+  }
+}
+@keyframes scaleForward {
+  0% {
+    transform: scale(0.85);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+@keyframes quickScaleDown {
+  0% {
+    transform: scale(1);
+  }
+  99.9% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(0);
+  }
+}
+@keyframes slideUpLarge {
+  0% {
+    transform: translateY(0%);
+  }
+  100% {
+    transform: translateY(-100%);
+  }
+}
+@keyframes slideDownLarge {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(0%);
+  }
+}
+@keyframes moveUp {
+  0% {
+    transform: translateY(150px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+@keyframes moveDown {
+  0% {
+    transform: translateY(0px);
+  }
+  100% {
+    transform: translateY(150px);
+  }
+}
+@keyframes blowUpContent {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  99.9% {
+    transform: scale(2);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(0);
+  }
+}
+@keyframes blowUpContentTwo {
+  0% {
+    transform: scale(2);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+@keyframes blowUpModal {
+  0% {
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+@keyframes blowUpModalTwo {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(0);
+    opacity: 0;
+  }
+}
+@keyframes roadRunnerIn {
+  0% {
+    transform: translateX(-1500px) skewX(30deg) scaleX(1.3);
+  }
+  70% {
+    transform: translateX(30px) skewX(0deg) scaleX(0.9);
+  }
+  100% {
+    transform: translateX(0px) skewX(0deg) scaleX(1);
+  }
+}
+@keyframes roadRunnerOut {
+  0% {
+    transform: translateX(0px) skewX(0deg) scaleX(1);
+  }
+  30% {
+    transform: translateX(-30px) skewX(-5deg) scaleX(0.9);
+  }
+  100% {
+    transform: translateX(1500px) skewX(30deg) scaleX(1.3);
+  }
+}
+@keyframes sketchIn {
+  0% {
+    stroke-dashoffset: 778;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+@keyframes sketchOut {
+  0% {
+    stroke-dashoffset: 0;
+  }
+  100% {
+    stroke-dashoffset: 778;
+  }
+}
+@keyframes modalFadeIn {
+  0% {
+    background-color: transparent;
+  }
+  100% {
+    background-color: white;
+  }
+}
+@keyframes modalFadeOut {
+  0% {
+    background-color: white;
+  }
+  100% {
+    background-color: transparent;
+  }
+}
+@keyframes modalContentFadeIn {
+  0% {
+    opacity: 0;
+    top: -20px;
+  }
+  100% {
+    opacity: 1;
+    top: 0;
+  }
+}
+@keyframes modalContentFadeOut {
+  0% {
+    opacity: 1;
+    top: 0px;
+  }
+  100% {
+    opacity: 0;
+    top: -20px;
+  }
+}
+@keyframes bondJamesBond {
+  0% {
+    transform: translateX(1000px);
+  }
+  80% {
+    transform: translateX(0px);
+    border-radius: 75px;
+    height: 75px;
+    width: 75px;
+  }
+  90% {
+    border-radius: 3px;
+    height: 182px;
+    width: 247px;
+  }
+  100% {
+    border-radius: 3px;
+    height: 162px;
+    width: 227px;
+  }
+}
+@keyframes killShot {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(300px) rotate(45deg);
+    opacity: 0;
+  }
+}
+@keyframes fadeToRed {
+  0% {
+    box-shadow: inset 0 0 0 rgba(201, 24, 24, 0.8);
+  }
+  100% {
+    box-shadow: inset 0 2000px 0 rgba(201, 24, 24, 0.8);
+  }
+}
+@keyframes slowFade {
+  0% {
+    opacity: 1;
+  }
+  99.9% {
+    opacity: 0;
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(0);
+  }
+}
+
+    </style>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+
+<body>
+
+  <div id="modal-container">
+  <div class="modal-background">
+    <div class="modal">
+
+
+
+          <div class="frontPage">
+            <div class="left">
+            <br><br>
+              <h1 class="headerTitle">Mohit Mittal</h1>
+              <h4 class="subHeaderDescription">Software Engineer and UX Expert</h4></br><br>
+              <span><img src="email.png"  class="icon"></img>&nbsp;&nbsp;&nbsp;<h5>mohit4.mittal@gmail.com</h5></span>
+              <span><img src="mobile.png"  class="icon"></img>&nbsp;&nbsp;&nbsp;<h5>+91-9039135790</h5></span>
+              <span><img src="location.png"  class="icon"></img>&nbsp;&nbsp;&nbsp;<h5>Pune, Maharashtra</h5></span></br>
+              <span><a href="https://in.linkedin.com/in/mohit-mittal-47622711a?trk=profile-badge"><img src="linkedin.png"  class="bigIcon"></a></span></br></br>
+              <a href="https://drive.google.com/uc?export=download&id=1McnqfKKj0RIiRgo_JQ-I-beccRoV-OT0"><button class="btn">Download CV</button></a></br></br>
+              <a href="./ViewProfile.html"><button class="btn">Complete Profile</button></a>
+            </div>
+            <div class="right">
+              <img src="ProfPic.jpg" class="ProfPic"></img>
+            </div>
+
+          </div>
+
+<!-- 
+      <svg class="modal-svg" width="100%" height="100%" preserveAspectRatio="none">
+								<rect x="0" y="0" fill="none" width="226" height="162" rx="3" ry="3"></rect>
+							</svg>  -->
+    </div>
+  </div>
+</div>
+<div class="content">
+   <div class="buttons">
+    <div id="one" class="button"><h1 style="position: relative;top: 45%;transform: translateY(-100%);font-family: 'Inknut Antiqua', serif;font-size: 18px;">Hello there...<br></h1><h1 id="mainHeader"  style=" position: relative;top: 50%;transform: translateY(-70%);font-family: 'Inknut Antiqua', serif;">I am Mohit</h1></div>
+  </div>
+
+</div>
+  <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+    <script  src="js/index.js"></script>
+</body>
+
+</html>
