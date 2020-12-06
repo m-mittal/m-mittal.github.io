@@ -2,6 +2,10 @@ body{
     background-color: #010101;
 }
 
+a{
+  text-decoration: none;
+}
+
 #main{
     height: 250px;
     width: 485px;
